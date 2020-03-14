@@ -1,0 +1,71 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Status #<%= @status.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/statuses" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_status/<%= @status.id %>" class="btn btn-block btn-outline-secondary">
+          Delete status
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @status.status %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@status.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@status.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit status
+    </h2>
+
+    <form action="/modify_status/<%= @status.id %>"  method="post" >
+      <div class="form-group">
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" class="form-control" value="<%= @status.status %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update status
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

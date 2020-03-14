@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all statuses
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new status
+    </h2>
+
+    <form action="/insert_status" method="post">
+      <div class="form-group">
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create status
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @statuses.each do |status| %>
+      <tr>
+        <td>
+          <%= status.id %>
+        </td>
+
+        <td>
+          <%= status.status %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(status.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(status.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/statuses/<%= status.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

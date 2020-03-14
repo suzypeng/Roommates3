@@ -1,0 +1,164 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all tasks
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new task
+    </h2>
+
+    <form action="/insert_task" method="post">
+      <div class="form-group">
+        <label for="task_name_box">
+          Task name
+        </label>
+
+        <textarea id="task_name_box" name="query_task_name" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="body_description_box">
+          Body description
+        </label>
+
+        <input type="text" id="body_description_box" name="query_body_description" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="user_id_box">
+          Assigned to User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" class="form-control">
+      </div>
+
+      <%# <div class="form-group">
+        <label for="status_id_box">
+          Status
+        </label>
+
+        <input type="text" id="status_id_box" name="query_status_id" class="form-control">
+      </div> %>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create task
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Task ID
+        </th>
+
+        <th>
+          Task name
+        </th>
+
+        <th>
+          Body description
+        </th>
+
+        <th>
+          Assigned User ID
+        </th>
+
+         <th>
+          Assigned Person
+        </th>
+
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Status
+        </th>
+
+        <th>
+          Show details
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @tasks.each do |task| %>
+      <tr>
+        <td>
+          <%= task.id %>
+        </td>
+
+        <td>
+          <%= task.task_name %>
+        </td>
+
+        <td>
+          <%= task.body_description %>
+        </td>
+
+        <td>
+          <%= task.user_id %>
+        </td>
+
+        <%# <td>
+          <%= task.status_id %>
+        <%# </td> %>
+
+        <td>
+          <%= task.userfortask %>
+        </td>
+
+        <td>
+          <%= (task.created_at.strftime("%b %d, %Y")) %>
+        </td>
+        
+        <%# <td>
+        <%= status.%>
+        <%# </td> %>
+
+     <td>   
+      <form action="/modify_status/:path_id" method="post">
+      <div class="form-group">
+        <label for="status_box">
+         Status
+        </label>
+
+        <select name="status_drop" id="status">
+           <option value="0"<%= ' selected="selected"' if session[:status] == 0 %>>Completed</option>
+           <option value="1"<%= ' selected="selected"' if session[:status] == 1 %>>Not Completed</option>
+         </select>
+          <button class="btn btn-block btn-outline-secondary">
+        Status
+      </button>
+    </form>
+      </div>
+      </td>  
+      
+        <td>
+          <a href="/tasks/<%= task.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+
+    </table>
+
+  </div>
+</div>
+
+<hr>

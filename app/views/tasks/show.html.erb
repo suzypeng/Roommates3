@@ -1,0 +1,152 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Task #<%= @task.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/tasks" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_task/<%= @task.id %>" class="btn btn-block btn-outline-secondary">
+          Delete task
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Task name
+      </dt>
+      <dd>
+        <%= @task.task_name %>
+      </dd>
+
+      <dt>
+        Body description
+      </dt>
+      <dd>
+        <%= @task.body_description %>
+      </dd>
+
+
+      <%# <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @task.status_id %>
+      <%# </dd> %>
+
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= (@task.created_at.strftime("%b %d, %Y")) %> 
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@task.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<%# <div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+   
+   
+    <dd><%= @task.user_id %></dd>
+    
+    <%# <dd><%= @task.user_id.username</dd>  %>
+  
+    <%# </div> %>
+<%# </div> %>
+
+<hr>
+
+<h3>
+<th>
+  Assigned Person
+</th>
+
+<th>
+  Status
+</th>
+
+</h3>
+
+<td>
+  <%= @task.userfortask %>
+</td>
+
+<%# # Need to add status here %>
+<td>
+  <%= @task.taskstatus %>
+</td>
+
+
+
+
+
+<hr>
+
+<hr>
+
+
+ <div class="row mb-3">
+   <div class="col-md-8 offset-md-2">
+     <h3>
+       Edit task
+     </h3>
+
+     <form action="/modify_task/<%= @task.id %>"  method="post" >
+       <div class="form-group">
+         <label for="task_name_box">
+           Task name
+         </label>
+
+         <textarea id="task_name_box" name="query_task_name" class="form-control" rows="3"><%= @task.task_name %></textarea>
+       </div>
+
+       <div class="form-group">
+         <label for="body_description_box">
+           Body description
+         </label>
+
+         <input type="text" id="body_description_box" name="query_body_description" class="form-control" value="<%= @task.body_description %>">
+       </div>
+
+       <div class="form-group">
+         <label for="user_id_box">
+           User
+         </label>
+
+         <input type="text" id="user_id_box" name="query_user_id" class="form-control" value="<%= @task.user_id %>">
+       </div>
+
+       <div class="form-group">
+         <label for="status_id_box">
+           Status
+         </label>
+
+         <input type="text" id="status_id_box" name="query_status_id" class="form-control" value="<%= @task.status_id %>">
+       </div>
+
+       <button class="btn btn-block btn-outline-secondary">
+         Update task
+       </button>
+     </form>
+   </div>
+ </div>
+
+ <hr>

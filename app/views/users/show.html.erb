@@ -1,0 +1,38 @@
+<h1><%= @user.username %></h1>
+
+<dl>
+  <dt>ID</dt>
+  <dd><%= @user.id %></dd>
+
+  <dt>Edit user</dt>
+  <dd>
+    <form action="/update_user/<%= @user.id %>" >
+      <label for="browser_username">Username</label>
+      <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="<%= @user.username %>">
+
+      <button>Update user</button>
+    </form>
+  </dd>
+</dl>
+
+ <dd>
+ 
+ <% @user.userassignedtask.each do |assignedtask| %>
+ 
+ <tr>
+    <td>
+      <%= assignedtask.task_name %>
+      
+    </td>
+
+<td>
+      <%= assignedtask.id %>
+      
+    </td>
+
+ </tr>
+ </table>
+
+  <% end %>
+
+ </dd>
